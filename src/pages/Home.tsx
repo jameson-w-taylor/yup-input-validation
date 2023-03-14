@@ -1,4 +1,4 @@
-import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonInput, IonItem, IonLabel, IonList, IonPage } from '@ionic/react';
+import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonInput, IonPage } from '@ionic/react';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
@@ -38,9 +38,9 @@ const Home: React.FC = () => {
 
   return (
     <IonPage>
-      <IonContent className="ion-text-center">
+      <IonContent>
         <IonCard>
-          <IonCardHeader>
+          <IonCardHeader className="ion-text-center">
             <IonCardTitle>Form Test</IonCardTitle>
             <IonCardSubtitle>Welcome to some validation testing</IonCardSubtitle>
           </IonCardHeader>
