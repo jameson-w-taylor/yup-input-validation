@@ -1,0 +1,7 @@
+{
+  "name": "yup-input-validation",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
