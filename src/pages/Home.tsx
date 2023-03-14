@@ -45,47 +45,41 @@ const Home: React.FC = () => {
             <IonCardSubtitle>Welcome to some validation testing</IonCardSubtitle>
           </IonCardHeader>
           <IonCardContent>
-            <IonList>
-              <Controller
-                name="email"
-                control={control}
-                render={({ field: { onChange, value } }) => (
-                  <IonInput
-                    type="email"
-                    label="E-mail Address"
-                    labelPlacement="floating"
-                    value={value}
-                    onIonInput={(e) => onChange(e.detail.value)}
-                    className={getInputClassNames('email')}
-                    errorText={errors.email?.message}
-                  ></IonInput>
-                )}/>
-              <Controller
-                name="password"
-                control={control}
-                render={({ field: { onChange, value } }) => (
-                  <IonInput
-                    type="password"
-                    label="Password"
-                    labelPlacement="floating"
-                    value={value}
-                    onIonInput={(e) => onChange(e.detail.value)}
-                    className={getInputClassNames('password')}
-                    errorText={errors.password?.message}
-                  ></IonInput>
-                )}/>
-              <IonItem>
-                <IonLabel>
-                  <IonButton
-                    data-testid="basic-signin-button"
-                    expand="block"
-                    disabled={!isValid}
-                    onClick={handleSubmit((formData) => console.log(formData))}>
-                    Sign In With Email
-                  </IonButton>
-                </IonLabel>
-              </IonItem>
-            </IonList>
+            <Controller
+              name="email"
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <IonInput
+                  type="email"
+                  label="E-mail Address"
+                  labelPlacement="floating"
+                  value={value}
+                  onIonInput={(e) => onChange(e.detail.value)}
+                  className={getInputClassNames('email')}
+                  errorText={errors.email?.message}
+                ></IonInput>
+              )}/>
+            <Controller
+              name="password"
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <IonInput
+                  type="password"
+                  label="Password"
+                  labelPlacement="floating"
+                  value={value}
+                  onIonInput={(e) => onChange(e.detail.value)}
+                  className={getInputClassNames('password')}
+                  errorText={errors.password?.message}
+                ></IonInput>
+              )}/>
+            <IonButton
+              data-testid="basic-signin-button"
+              expand="block"
+              disabled={!isValid}
+              onClick={handleSubmit((formData) => console.log(formData))}>
+              Sign In With Email
+            </IonButton>
           </IonCardContent>
         </IonCard>
       </IonContent>
