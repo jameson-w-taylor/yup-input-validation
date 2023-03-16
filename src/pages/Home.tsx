@@ -17,23 +17,18 @@ const Home: React.FC = () => {
   const {
     handleSubmit,
     control,
-    formState: { errors, isValid, touchedFields },
+    formState: { errors, isValid, touchedFields, dirtyFields },
   } = useForm<PageInputs>({
-    mode: 'onChange',
+    mode: 'onTouched',
     resolver: yupResolver(validationSchema)
   });
 
   const getInputClassNames = (field: keyof PageInputs) => {
-    const classNames = [];
-    if (errors[field]) {
-      classNames.push('ion-invalid');
-    } else {
-      classNames.push('ion-valid');
-    }
-    if (touchedFields[field]) {
-      classNames.push('ion-touched');
-    }
-    return classNames.join(' ');
+    return [
+      errors[field] ? 'ion-invalid' : 'ion-valid',
+      touchedFields[field] ? 'ion-touched' : 'ion-untouched',
+      dirtyFields[field] ? 'ion-dirty' : 'ion-pristine'
+    ].join(' ');
   }
 
   return (
@@ -48,12 +43,13 @@ const Home: React.FC = () => {
             <Controller
               name="email"
               control={control}
-              render={({ field: { onChange, value } }) => (
+              render={({ field: { onChange, onBlur, value } }) => (
                 <IonInput
                   type="email"
                   label="E-mail Address"
                   labelPlacement="floating"
                   value={value}
+                  onIonBlur={onBlur}
                   onIonInput={(e) => onChange(e.detail.value)}
                   className={getInputClassNames('email')}
                   errorText={errors.email?.message}
@@ -62,12 +58,13 @@ const Home: React.FC = () => {
             <Controller
               name="password"
               control={control}
-              render={({ field: { onChange, value } }) => (
+              render={({ field: { onChange, onBlur, value } }) => (
                 <IonInput
                   type="password"
                   label="Password"
                   labelPlacement="floating"
                   value={value}
+                  onIonBlur={onBlur}
                   onIonInput={(e) => onChange(e.detail.value)}
                   className={getInputClassNames('password')}
                   errorText={errors.password?.message}
